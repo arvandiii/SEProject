@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <title>Bezier</title>
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.rtl.css" integrity="sha384-h/tGiTStmgbDQyTAdp2s5BfyXn7wmnFsn3vDaCPYck9YKkOuLAdjHi6y154TBVJ4"
+    crossorigin="anonymous">
+  <style>
+    .last.container {
+      margin-bottom: 300px !important;
+    }
+
+    h1.ui.center.header {
+      margin-top: 3em;
+    }
+
+    h2.ui.center.header {
+      margin: 4em 0em 2em;
+    }
+
+    h3.ui.center.header {
+      margin-top: 2em;
+      padding: 2em 0em;
+    }
+  </style>
+</head>
+
+<body>
+  <h3 class="ui center aligned header">فرم ثبت نام</h3>
+  <div class="ui text container">
+    <form class="ui form" action="/" method="post">
+      <h4 class="ui dividing header">اطلاعات شخصی</h4>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="firstName" placeholder="نام">
+          </div>
+          <div class="field">
+            <input type="text" name="lastName" placeholder="نام خانوادگی">
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="four wide field">
+            <input type="text" name="nationalCode" placeholder="کد ملی">
+          </div>
+          <div class="twelve wide field">
+            <input type="text" name="iban" placeholder="شماره شبا">
+          </div>
+        </div>
+      </div>
+      <h4 class="ui dividing header">اطلاع رسانی</h4>
+      <div class="field">
+        <div class="ui checkbox">
+          <input id="notify-via-email" type="checkbox" name="notify-via-email">
+          <label>اطلاع رسانی از طریق ایمیل نیز انجام شود.</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="field">
+          <input name="email" type="email" placeholder="ایمیل">
+        </div>
+      </div>
+      <div class="ui primary submit button" tabindex="0">ثبت نام</div>
+      <div class="ui error message"></div>
+    </form>
+  </div>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.min.js" integrity="sha384-kZT+CItOKWHYL+Rz37W2NEz60Pu2JJJ8wgzq+82VWsi3QM53eNFzQJZqzhPuyo63"
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function () {
+      function updateValidation(emailEnabled) {
+        $('.ui.form').form({
+          fields: {
+            firstName: {
+              identifier: 'firstName',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'لطفا نام خود را وارد کنید'
+                }
+              ]
+            },
+            lastName: {
+              identifier: 'lastName',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'لطفا نام خانوادگی خود را وارد کنید'
+                }
+              ]
+            },
+            nationalCode: {
+              identifier: 'nationalCode',
+              rules: []/* [
+                {
+                  type: 'regExp[/^[0-9]$/]',
+                  prompt: 'لطفا کد ملی را با ارقام لاتینن وارد کنید'
+                },
+                {
+                  type: 'exactLength[10]',
+                  prompt: 'لطفا کد ملی ۱۰ رقمی خود را وارد کنید'
+                },
+              ] */
+            },
+            iban: {
+              identifier: 'iban',
+              rules: []/* [
+                {
+                  type: 'regExp[/^IR[0-9]{24}$/]',
+                  prompt: 'لطفا شماره شبای خود را با پیشوند IR وارد کنید'
+                },
+              ] */
+            },
+            email: {
+              identifier: 'email',
+              rules: emailEnabled ? [
+                {
+                  type: 'email',
+                  prompt: 'لطفا ایمیل خود را وارد کنید'
+                },
+              ] : []
+            }
+          }
+        })
+      }
+
+      updateValidation(false)
+      $('#notify-via-email').change(function () {
+        if (this.checked) {
+          updateValidation(true)
+        } else {
+          updateValidation(false)
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{
+  "testUsers": [
+    {
+      "phone": "09999999999",
+      "password": "5698",
+      "fullName": "one",
+      "visible": true
+    },
+    {
+      "phone": "09999999998",
+      "password": "8943",
+      "fullName": "two",
+      "visible": true
+    },
+    {
+      "phone": "09999999997",
+      "password": "3454",
+      "fullName": "چیز",
+      "visible": false
+    },
+    {
+      "phone": "09999999996",
+      "password": "5219",
+      "fullName": "four",
+      "visible": true
+    },
+    {
+      "phone": "09999999995",
+      "password": "4920",
+      "fullName": "five",
+      "visible": true
+    }
+  ],
+
+  "prices": {
+    "unlockProfileViewers": "150",
+    "startConversation": 30
+  }
+}
