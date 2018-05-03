@@ -42,13 +42,8 @@
             <input type="text" name="lastName" placeholder="نام خانوادگی">
           </div>
         </div>
-        <div class="two fields">
-          <div class="four wide field">
-            <input type="text" name="nationalCode" placeholder="کد ملی">
-          </div>
-          <div class="twelve wide field">
-            <input type="text" name="iban" placeholder="شماره شبا">
-          </div>
+        <div class="field">
+          <input type="text" name="phoneNumber" placeholder="موبایل">
         </div>
       </div>
       <h4 class="ui dividing header">اطلاع رسانی</h4>
@@ -94,27 +89,26 @@
                 }
               ]
             },
-            nationalCode: {
-              identifier: 'nationalCode',
-              rules: []/* [
-                {
-                  type: 'regExp[/^[0-9]$/]',
-                  prompt: 'لطفا کد ملی را با ارقام لاتینن وارد کنید'
+            phone: {
+              identifier: 'phoneNumber',
+              rules: [
+              {
+                  type: 'empty',
+                  prompt: 'لطفا شماره موبایل خود را وارد کنید'
                 },
                 {
-                  type: 'exactLength[10]',
-                  prompt: 'لطفا کد ملی ۱۰ رقمی خود را وارد کنید'
+                  type: 'regExp[/^[0-9]*$/]',
+                  prompt: 'لطفا شماره موبایل خود را با ارقام لاتینن وارد کنید'
                 },
-              ] */
-            },
-            iban: {
-              identifier: 'iban',
-              rules: []/* [
                 {
-                  type: 'regExp[/^IR[0-9]{24}$/]',
-                  prompt: 'لطفا شماره شبای خود را با پیشوند IR وارد کنید'
+                  type: 'exactLength[11]',
+                  prompt: 'شماره موبایل باید ۱۱ رقم باشد'
                 },
-              ] */
+                {
+                  type: 'regExp[/^09[0-9]*$/]',
+                  prompt: 'شماره موبایل باید با ۰۹ آغاز شود'
+                },
+              ]
             },
             email: {
               identifier: 'email',
