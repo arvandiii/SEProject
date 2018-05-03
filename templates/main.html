@@ -54,12 +54,10 @@
             text-align: center;
         }
 
-        .card .image {
-            height: 350px;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
+        .card .meta.center {
+            text-align: center;
         }
+
     </style>
 
 </head>
@@ -84,45 +82,40 @@
         <p>A text container is used for the main container, which is useful for single column layouts</p>
     </div>
 
-    <div class="ui main container five column grid">
-        <div class="column">
-            <div class="ui fluid card">
-                <div class="image">
-                    <img src="assets/a_man_called_ove.jpg">
+    <div class="ui special cards main container five column grid">
+        <div class="card">
+            <div class="blurring dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <div class="ui inverted button">Add Friend</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="content">
-                    <a class="header center">مردی به نام اوه</a>
+                <img src="assets/a.png">
+            </div>
+            <div class="content">
+                <a class="header center">Team Fu</a>
+                <div class="meta center">
+                    <span class="date">Created in Sep 2014</span>
                 </div>
             </div>
         </div>
-
-        <div class="column">
-            <div class="ui fluid card">
-                <div class="image">
-                    <img src="assets/a.png">
+        <div class="card">
+            <div class="blurring dimmable image">
+                <div class="ui inverted dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <div class="ui primary button">اضافه به سبد خرید</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="content">
-                    <a class="header">Daniel Louise</a>
-                </div>
+                <img src="assets/a.png">
             </div>
-        </div>
-        <div class="column">
-            <div class="ui fluid card">
-                <div class="image">
-                    <img src="assets/a.png">
-                </div>
-                <div class="content">
-                    <a class="header">Helen Troy</a>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="ui fluid card">
-                <div class="image">
-                    <img src="assets/a.png">
-                </div>
-                <div class="content">
-                    <a class="header">Elliot Fu</a>
+            <div class="content">
+                <a class="header">Team Hess</a>
+                <div class="meta">
+                    <span class="date">Created in Aug 2014</span>
                 </div>
             </div>
         </div>
@@ -174,12 +167,19 @@
             </div>
         </div>
     </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.min.js" integrity="sha384-kZT+CItOKWHYL+Rz37W2NEz60Pu2JJJ8wgzq+82VWsi3QM53eNFzQJZqzhPuyo63"
+        crossorigin="anonymous"></script>
+    <script>
+        $('.special.cards .image').dimmer({
+            on: 'hover'
+        });
+    </script>
+
+
 </body>
 
-<script>
-    $('.special.cards .image').dimmer({
-        on: 'hover'
-    });
-</script>
+
 
 </html>
