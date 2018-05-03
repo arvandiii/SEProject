@@ -5,22 +5,30 @@ const ejs = require("ejs");
 
 const app = express();
 app.set("view engine", "ejs");
-
+app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/main", function(req, res) {
-  res.render("main.ejs");
+app.get("/", function(req, res) {
+  res.render("main.ejs", {
+    books: [
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      }
+    ]
+  });
 });
 
 app.get("/signIn", function(req, res) {
-  res.render(path.join(__dirname, "templates", "signIn.ejs"));
+  res.render("signIn.ejs");
 });
 app.get("/signUp", function(req, res) {
-  res.render(path.join(__dirname, "templates", "signUp.ejs"));
+  res.render("signUp.ejs");
 });
 app.get("/aboutUs", function(req, res) {
-  res.render(path.join(__dirname, "templates", "aboutUs.ejs"));
+  res.render("aboutUs.ejs");
 });
 
 app.post("/", function(req, res) {

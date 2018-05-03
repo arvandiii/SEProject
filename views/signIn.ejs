@@ -2,179 +2,79 @@
 <html lang="fa" dir="rtl">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#000000">
-  <title>Bezier</title>
-  <link rel="stylesheet" href="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.rtl.css" integrity="sha384-h/tGiTStmgbDQyTAdp2s5BfyXn7wmnFsn3vDaCPYck9YKkOuLAdjHi6y154TBVJ4"
-    crossorigin="anonymous">
-  <style>
-    body {
-      background-color: #FFFFFF;
-    }
+	<%- include head.ejs %>
+	<%- include style.ejs %>
 
-    .ui.menu .item img.logo {
-      margin-left: 1.5em;
-    }
-
-    .main.container {
-      margin-top: 7em;
-    }
-
-    .wireframe {
-      margin-top: 2em;
-    }
-
-    .ui.footer.segment {
-      margin: 5em 0em 0em;
-      padding: 5em 0em;
-    }
-
-    .last.container {
-      margin-bottom: 300px !important;
-    }
-
-    h1.ui.center.header {
-      margin-top: 3em;
-    }
-
-    h2.ui.center.header {
-      margin: 4em 0em 2em;
-    }
-
-    h3.ui.center.header {
-      margin-top: 2em;
-      padding: 2em 0em;
-    }
-
-    .card .header.center {
-      text-align: center;
-    }
-
-    .card .meta.center {
-      text-align: center;
-    }
-
-    .text.center {
-      text-align: center;
-    }
-  </style>
+	</style>
 </head>
 
 <body>
-  <div class="ui fixed inverted menu">
-    <div class="ui container">
-      <a class="item">کتابچه</a>
-      <a href="#" class="item" style="display:none;">
-        <i class="shopping cart icon"></i>سبد خرید
-      </a>
-      <div class="right menu">
-        <div class="item">
-          <a class="ui button">ورود</a>
-        </div>
-        <div class="item">
-          <a class="ui primary button">ثبت نام</a>
-        </div>
-      </div>
-    </div>
-  </div>
+	<%- include header.ejs %>
 
-  <h3 class="ui center aligned header">وارد شوید</h3>
-  <div class="ui text container">
-    <form class="ui form" action="/" method="post">
-      <div class="field">
-        <div class="field">
-          <input type="text" name="phoneNumber" placeholder="موبایل">
-        </div>
-        <div class="field">
-          <input type="password" name="password" placeholder="رمز عبور">
-        </div>
-      </div>
-      <div class="ui primary submit button" tabindex="0">ورود</div>
-      <div class="ui error message"></div>
-    </form>
-  </div>
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.min.js" integrity="sha384-kZT+CItOKWHYL+Rz37W2NEz60Pu2JJJ8wgzq+82VWsi3QM53eNFzQJZqzhPuyo63"
-    crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function () {
-      function updateValidation(emailEnabled) {
-        $('.ui.form').form({
-          fields: {
-            firstName: {
-              identifier: 'firstName',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'لطفا نام خود را وارد کنید'
-                }
-              ]
-            },
-            lastName: {
-              identifier: 'lastName',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'لطفا نام خانوادگی خود را وارد کنید'
-                }
-              ]
-            },
-            phone: {
-              identifier: 'phoneNumber',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'لطفا شماره موبایل خود را وارد کنید'
-                },
-                {
-                  type: 'regExp[/^[0-9]*$/]',
-                  prompt: 'لطفا شماره موبایل خود را با ارقام لاتینن وارد کنید'
-                },
-                {
-                  type: 'exactLength[11]',
-                  prompt: 'شماره موبایل باید ۱۱ رقم باشد'
-                },
-                {
-                  type: 'regExp[/^09[0-9]*$/]',
-                  prompt: 'شماره موبایل باید با ۰۹ آغاز شود'
-                },
-              ]
-            },
-            password: {
-              identifier: 'password',
-              rules: [
-                {
-                  type: 'regExp[(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}]',
-                  prompt: 'رمز عبور باید شامل حداقل یک حرف بزرگ و یک حرف کوچک و یک عدد باشد و حداقل طول آن ۸ باشد'
-                },
-              ]
-            },
-            email: {
-              identifier: 'email',
-              rules: emailEnabled ? [
-                {
-                  type: 'email',
-                  prompt: 'لطفا ایمیل خود را وارد کنید'
-                },
-              ] : []
-            }
-          }
-        })
-      }
 
-      updateValidation(false)
-      $('#notify-via-email').change(function () {
-        if (this.checked) {
-          updateValidation(true)
-        } else {
-          updateValidation(false)
-        }
-      });
-    });
+	<h3 class="ui center aligned header">وارد شوید</h3>
+	<div class="ui text container">
+		<form class="ui form" action="/" method="post">
+			<div class="field">
+				<div class="field">
+					<input type="text" name="phoneNumber" placeholder="موبایل">
+				</div>
+				<div class="field">
+					<input type="password" name="password" placeholder="رمز عبور">
+				</div>
+			</div>
+			<div class="ui primary submit button" tabindex="0">ورود</div>
+			<div class="ui error message"></div>
+		</form>
+	</div>
 
-  </script>
+	<%- include footer.ejs %>
+
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.min.js" integrity="sha384-kZT+CItOKWHYL+Rz37W2NEz60Pu2JJJ8wgzq+82VWsi3QM53eNFzQJZqzhPuyo63"
+	 crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+			function updateValidation(emailEnabled) {
+				$('.ui.form').form({
+					fields: {
+						phone: {
+							identifier: 'phoneNumber',
+							rules: [
+								{
+									type: 'empty',
+									prompt: 'لطفا شماره موبایل خود را وارد کنید'
+								},
+								{
+									type: 'regExp[/^[0-9]*$/]',
+									prompt: 'لطفا شماره موبایل خود را با ارقام لاتینن وارد کنید'
+								},
+								{
+									type: 'exactLength[11]',
+									prompt: 'شماره موبایل باید ۱۱ رقم باشد'
+								},
+								{
+									type: 'regExp[/^09[0-9]*$/]',
+									prompt: 'شماره موبایل باید با ۰۹ آغاز شود'
+								},
+							]
+						},
+					}
+				})
+			}
+
+			updateValidation(false)
+			$('#notify-via-email').change(function () {
+				if (this.checked) {
+					updateValidation(true)
+				} else {
+					updateValidation(false)
+				}
+			});
+		});
+
+	</script>
 </body>
 
 </html>
