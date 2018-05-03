@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+
+<head>
+
+    <%- include head.ejs %>
+        <%- include style.ejs %>
+
+</head>
+
+<body>
+
+    <%- include header.ejs %>
+
+        <div class="ui main text container center">
+            <h1 class="ui header">کتابچه</h1>
+            <p>کتابچه فروشگاه قانونی کتاب است که امکان خرید و مطالعه آن‌ها را بر روی گوشی و تبلت‌های هوشمند فراهم می‌کند. همه
+                کتاب‌ها نیز با هماهنگی و انتخاب ناشران و ‌صاحبان اثر‌ عرضه می‌شوند.</p>
+        </div>
+
+        <div class="ui special cards main container five column grid">
+            <div class="card">
+                <div class="blurring dimmable image">
+                    <div class="ui inverted dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <div class="ui primary button">اطلاعات بیشتر</div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="assets/a_man_called_ove.jpg">
+                </div>
+                <div class="content">
+                    <a class="header center">مردی به نام اوه</a>
+                    <div class="meta center">
+                        <span class="author">فردریک بکمن</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include footer.ejs %>
+
+            <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.min.js" integrity="sha384-kZT+CItOKWHYL+Rz37W2NEz60Pu2JJJ8wgzq+82VWsi3QM53eNFzQJZqzhPuyo63"
+                crossorigin="anonymous"></script>
+            <script>
+                $('.special.cards .image').dimmer({
+                    on: 'hover'
+                });
+            </script>
+
+
+</body>
+
+
+
+</html>

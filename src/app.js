@@ -1,14 +1,26 @@
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
 
 const app = express();
+app.set("view engine", "ejs");
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "/index.html"));
+app.get("/main", function(req, res) {
+  res.render("main.ejs");
+});
+
+app.get("/signIn", function(req, res) {
+  res.render(path.join(__dirname, "templates", "signIn.ejs"));
+});
+app.get("/signUp", function(req, res) {
+  res.render(path.join(__dirname, "templates", "signUp.ejs"));
+});
+app.get("/aboutUs", function(req, res) {
+  res.render(path.join(__dirname, "templates", "aboutUs.ejs"));
 });
 
 app.post("/", function(req, res) {

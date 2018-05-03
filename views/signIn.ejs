@@ -9,6 +9,27 @@
   <link rel="stylesheet" href="https://cdn.rtlcss.com/semantic-ui/2.2.6/semantic.rtl.css" integrity="sha384-h/tGiTStmgbDQyTAdp2s5BfyXn7wmnFsn3vDaCPYck9YKkOuLAdjHi6y154TBVJ4"
     crossorigin="anonymous">
   <style>
+    body {
+      background-color: #FFFFFF;
+    }
+
+    .ui.menu .item img.logo {
+      margin-left: 1.5em;
+    }
+
+    .main.container {
+      margin-top: 7em;
+    }
+
+    .wireframe {
+      margin-top: 2em;
+    }
+
+    .ui.footer.segment {
+      margin: 5em 0em 0em;
+      padding: 5em 0em;
+    }
+
     .last.container {
       margin-bottom: 300px !important;
     }
@@ -25,40 +46,51 @@
       margin-top: 2em;
       padding: 2em 0em;
     }
+
+    .card .header.center {
+      text-align: center;
+    }
+
+    .card .meta.center {
+      text-align: center;
+    }
+
+    .text.center {
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-  <h3 class="ui center aligned header">فرم ثبت نام</h3>
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a class="item">کتابچه</a>
+      <a href="#" class="item" style="display:none;">
+        <i class="shopping cart icon"></i>سبد خرید
+      </a>
+      <div class="right menu">
+        <div class="item">
+          <a class="ui button">ورود</a>
+        </div>
+        <div class="item">
+          <a class="ui primary button">ثبت نام</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="ui center aligned header">وارد شوید</h3>
   <div class="ui text container">
     <form class="ui form" action="/" method="post">
-      <h4 class="ui dividing header">اطلاعات شخصی</h4>
       <div class="field">
-        <div class="two fields">
-          <div class="field">
-            <input type="text" name="firstName" placeholder="نام">
-          </div>
-          <div class="field">
-            <input type="text" name="lastName" placeholder="نام خانوادگی">
-          </div>
-        </div>
         <div class="field">
           <input type="text" name="phoneNumber" placeholder="موبایل">
         </div>
-      </div>
-      <h4 class="ui dividing header">اطلاع رسانی</h4>
-      <div class="field">
-        <div class="ui checkbox">
-          <input id="notify-via-email" type="checkbox" name="notify-via-email">
-          <label>اطلاع رسانی از طریق ایمیل نیز انجام شود.</label>
-        </div>
-      </div>
-      <div class="field">
         <div class="field">
-          <input name="email" type="email" placeholder="ایمیل">
+          <input type="password" name="password" placeholder="رمز عبور">
         </div>
       </div>
-      <div class="ui primary submit button" tabindex="0">ثبت نام</div>
+      <div class="ui primary submit button" tabindex="0">ورود</div>
       <div class="ui error message"></div>
     </form>
   </div>
@@ -92,7 +124,7 @@
             phone: {
               identifier: 'phoneNumber',
               rules: [
-              {
+                {
                   type: 'empty',
                   prompt: 'لطفا شماره موبایل خود را وارد کنید'
                 },
@@ -107,6 +139,15 @@
                 {
                   type: 'regExp[/^09[0-9]*$/]',
                   prompt: 'شماره موبایل باید با ۰۹ آغاز شود'
+                },
+              ]
+            },
+            password: {
+              identifier: 'password',
+              rules: [
+                {
+                  type: 'regExp[(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}]',
+                  prompt: 'رمز عبور باید شامل حداقل یک حرف بزرگ و یک حرف کوچک و یک عدد باشد و حداقل طول آن ۸ باشد'
                 },
               ]
             },
