@@ -44,4 +44,9 @@ const addUser = async ({
   );
 };
 
-module.exports = { createUserTable, addUser };
+const getUser = async ({ phoneNumber }) => {
+  const c = await getConn();
+  return c.query(`SELECT * FROM user where user.phoneNumber = ${phoneNumber};`)  
+};
+
+module.exports = { createUserTable, addUser, getUser };

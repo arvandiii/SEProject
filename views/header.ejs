@@ -1,10 +1,15 @@
-<div class="ui fixed inverted menu">
+<div class="ui fixed inverted menu", style="min-height: 4em;">
     <div class="ui container">
         <a class="item" href="/">کتابچه</a>
-        <a href="#" class="item" style="display:none;">
-            <i class="shopping cart icon"></i>سبد خرید
-        </a>
-        <div class="right menu">
+        <div class="right menu" style="display:<%if (user) {%>visible<%}else{%>none<% } %>;">
+            <a class="item"  href="#">
+                <%if (user) {%><%=  user.firstName  %><%}else{%><% } %>
+            </a>
+            <a href="#" class="item">
+                <i class="shopping cart icon"></i>سبد خرید
+            </a>
+        </div>
+        <div class="right menu" style="display:<%if (user) {%>none<%}else{%>visible<% } %>;">
             <div class="item">
                 <a class="ui button"  href="signIn">ورود</a>
             </div>
