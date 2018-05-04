@@ -2,6 +2,10 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const { createUserTable, addUser } = require("./db");
+const { hash } = require("./utils");
+
+createUserTable().then(console.log);
 
 const app = express();
 app.set("view engine", "ejs");
@@ -10,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function(req, res) {
-  res.render("main.ejs", {
+  return res.render("main.ejs", {
     books: [
       {
         name: "مردی به نام اوه",
@@ -57,17 +61,55 @@ app.get("/", function(req, res) {
 });
 
 app.get("/signIn", function(req, res) {
-  res.render("signIn.ejs");
+  return res.render("signIn.ejs", { message: null });
 });
 app.get("/signUp", function(req, res) {
-  res.render("signUp.ejs");
+  return res.render("signUp.ejs");
 });
 app.get("/aboutUs", function(req, res) {
-  res.render("aboutUs.ejs");
+  return res.render("aboutUs.ejs");
 });
 
-app.post("/", function(req, res) {
-  console.log(req.body);
+app.post("/signUp", async function(req, res) {
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    password,
+    "notify-via-email": notify,
+    email
+  } = req.body;
+  try {
+    await addUser({
+      phoneNumber,
+      passwordHash: hash(password),
+      firstName,
+      lastName,
+      email,
+      notify: notify === "on" ? true : false
+    });
+  } catch (error) {
+    if (error.message.includes("ER_DUP_ENTRY")) {
+      return res.render("signIn.ejs", {
+        message: {
+          header: "شما قبلا ثبت نام کرده اید",
+          body: "وارد شوید",
+          alert: "negative"
+        }
+      });
+    }
+  }
+  return res.render("signIn.ejs", {
+    message: {
+      header: "ثبت نام شما با موفقبت انجام شد",
+      body: "وارد شوید",
+      alert: "positive"
+    }
+  });
+});
+
+app.post("/", async function(req, res) {
+  console.log("inja inja", req.body);
   res.send("ok");
 });
 

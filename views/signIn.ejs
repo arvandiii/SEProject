@@ -11,9 +11,22 @@
 <body>
 	<%- include header.ejs %>
 
+	
+	<div class="ui container">
+	
+	
 
 	<h3 class="ui center aligned header">وارد شوید</h3>
-	<div class="ui container">
+
+	<div class="ui <%if (message) {%><%=  message.alert  %><%}else{%>positive<% } %> message" style="display:<%if (message) {%>visible<%}else{%>none<% } %>;">
+		<div class="header">
+			<%if (message) {%><%=  message.header  %><%}else{%><% } %>
+		</div>
+		<p>
+			<%if (message) {%><%=  message.body  %><%}else{%><% } %>
+		</p>
+	</div>
+
 		<form class="ui form" action="/" method="post">
 			<div class="field">
 				<div class="field">

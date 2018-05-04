@@ -14,7 +14,7 @@
 
 	  <h3 class="ui center aligned header">فرم ثبت نام</h3>
   <div class="ui text container">
-    <form class="ui form" action="/" method="post">
+    <form class="ui form" action="/signUp" method="post">
       <h4 class="ui dividing header">اطلاعات شخصی</h4>
       <div class="field">
         <div class="two fields">
@@ -103,8 +103,8 @@
               identifier: 'password',
               rules: [
                 {
-                  type: 'regExp[(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}]',
-                  prompt: 'رمز عبور باید شامل حداقل یک حرف بزرگ و یک حرف کوچک و یک عدد باشد و حداقل طول آن ۸ باشد'
+                  type: 'empty',
+                  prompt: 'لطفا رمز عبور خود را وارد کنید '
                 },
               ]
             },
