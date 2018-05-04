@@ -47,13 +47,8 @@ app.use(async (req, res, next) => {
 
 app.get("/", async function(req, res) {
   const { user } = req;
-  console.log("inja", user);
-  const rawBooks = await getBook({});
-  const books = _.map(rawBooks, b => ({
-    name: b.name,
-    cover: b.cover,
-    author: b.author
-  }));
+  const books = await getBook({});
+  console.log("inja", user, books);
   return res.render("main.ejs", {
     books,
     user
@@ -70,7 +65,16 @@ app.get("/aboutUs", function(req, res) {
   return res.render("aboutUs.ejs", { user: null });
 });
 
-app.get("/book/:bookId", async function(req, res) {});
+app.get("/book/:bookId", async function(req, res) {
+  const { bookId } = req.params;
+  const { user } = req;
+  const [book] = await getBook({ bookId });
+  // console.log(bookId, book);
+  return res.render("book.ejs", {
+    book,
+    user
+  });
+});
 
 app.post("/signIn", async function(req, res) {
   const { phoneNumber, password } = req.body;

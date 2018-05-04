@@ -69,6 +69,8 @@ const createBookTable = async () => {
     CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
   await c.query(`ALTER TABLE book MODIFY COLUMN author VARCHAR(255)
     CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
+  await c.query(`ALTER TABLE book MODIFY COLUMN cover VARCHAR(255)
+    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
   const books = [
     {
       name: "مردی به نام اوه",
@@ -92,7 +94,7 @@ const createBookTable = async () => {
     }
   ];
   await Promise.map(books, async b => {
-    return // if needed remove this line
+    // return // if needed remove this line
     const { name, author, cover } = b;
     return await c.query(`INSERT INTO book (name, author, cover) 
     VALUES (\'${name}\', \'${author}\', \'${cover}\');`);
