@@ -2,14 +2,22 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const { createUserTable, addUser, getUser } = require("./db");
+const {
+  createUserTable,
+  addUser,
+  getUser,
+  createBookTable,
+  getBook
+} = require("./db");
 const { hash } = require("./utils");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const _ = require("underscore");
 
 const SECRET = "salam";
 
 createUserTable().then(console.log);
+createBookTable().then(console.log);
 
 const app = express();
 app.set("view engine", "ejs");
@@ -29,7 +37,7 @@ app.use(async (req, res, next) => {
       firstName,
       lastName,
       email,
-      role
+      role: role || "user"
     };
   } catch (error) {
     req.user = null;
@@ -37,32 +45,17 @@ app.use(async (req, res, next) => {
   next();
 });
 
-app.get("/", function(req, res) {
+app.get("/", async function(req, res) {
   const { user } = req;
   console.log("inja", user);
+  const rawBooks = await getBook({});
+  const books = _.map(rawBooks, b => ({
+    name: b.name,
+    cover: b.cover,
+    author: b.author
+  }));
   return res.render("main.ejs", {
-    books: [
-      {
-        name: "مردی به نام اوه",
-        cover: "a_man_called_ove.png",
-        author: "فردریک بکمن"
-      },
-      {
-        name: "معلم پیانو",
-        cover: "8470.png",
-        author: "چیستا یثربی"
-      },
-      {
-        name: "شازده کوچولو",
-        cover: "6426.png",
-        author: "آنتوان دو سنت اگزوپری"
-      },
-      {
-        name: "دختری که رهایش کردی",
-        cover: "13998.png",
-        author: "جوجو مویز"
-      }
-    ],
+    books,
     user
   });
 });
@@ -76,6 +69,8 @@ app.get("/signUp", function(req, res) {
 app.get("/aboutUs", function(req, res) {
   return res.render("aboutUs.ejs", { user: null });
 });
+
+app.get("/book/:bookId", async function(req, res) {});
 
 app.post("/signIn", async function(req, res) {
   const { phoneNumber, password } = req.body;
@@ -153,7 +148,7 @@ app.get("/admin", async function(req, res) {
       user
     });
   }
-  return res.
+  return res.send("permission denied");
 });
 
 app.get("/cookie", async function(req, res) {

@@ -1,4 +1,5 @@
 const mysql = require("promise-mysql");
+const Promise = require("bluebird");
 
 let conn = null;
 
@@ -27,13 +28,12 @@ const createUserTable = async () => {
       notify BINARY,
       role VARCHAR(30),
       PRIMARY KEY (phoneNumber)
-    );`
-  );
+    );`);
   await c.query(`ALTER TABLE user MODIFY COLUMN firstName VARCHAR(255)
-    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`)
+    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
   await c.query(`ALTER TABLE user MODIFY COLUMN lastName VARCHAR(255)
-  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`)
-  return "user table ok"
+  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
+  return "user table ok";
 };
 
 const addUser = async ({
@@ -53,7 +53,64 @@ const addUser = async ({
 
 const getUser = async ({ phoneNumber }) => {
   const c = await getConn();
-  return c.query(`SELECT * FROM user where user.phoneNumber = ${phoneNumber};`)  
+  return c.query(`SELECT * FROM user where user.phoneNumber = ${phoneNumber};`);
 };
 
-module.exports = { createUserTable, addUser, getUser };
+const createBookTable = async () => {
+  const c = await getConn();
+  await c.query(`CREATE TABLE IF NOT EXISTS book (
+      id MEDIUMINT NOT NULL AUTO_INCREMENT,
+      name VARCHAR(30),
+      author VARCHAR(30),
+      cover VARCHAR(30),
+      PRIMARY KEY (id)
+    );`);
+  await c.query(`ALTER TABLE book MODIFY COLUMN name VARCHAR(255)
+    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
+  await c.query(`ALTER TABLE book MODIFY COLUMN author VARCHAR(255)
+    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`);
+  const books = [
+    {
+      name: "مردی به نام اوه",
+      cover: "1.png",
+      author: "فردریک بکمن"
+    },
+    {
+      name: "معلم پیانو",
+      cover: "8470.png",
+      author: "چیستا یثربی"
+    },
+    {
+      name: "شازده کوچولو",
+      cover: "6426.png",
+      author: "آنتوان دو سنت اگزوپری"
+    },
+    {
+      name: "دختری که رهایش کردی",
+      cover: "13998.png",
+      author: "جوجو مویز"
+    }
+  ];
+  await Promise.map(books, async b => {
+    return // if needed remove this line
+    const { name, author, cover } = b;
+    return await c.query(`INSERT INTO book (name, author, cover) 
+    VALUES (\'${name}\', \'${author}\', \'${cover}\');`);
+  });
+  return "book table ok";
+};
+
+const getBook = async ({ bookId }) => {
+  const c = await getConn();
+  return c.query(
+    `SELECT * FROM book ${bookId ? `where book.id = ${bookId};` : ""}`
+  );
+};
+
+module.exports = {
+  createUserTable,
+  addUser,
+  getUser,
+  createBookTable,
+  getBook
+};
