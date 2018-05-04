@@ -18,7 +18,7 @@ const getConn = async () => {
 
 const createUserTable = async () => {
   const c = await getConn();
-  return c.query(`CREATE TABLE IF NOT EXISTS user (
+  await c.query(`CREATE TABLE IF NOT EXISTS user (
       phoneNumber VARCHAR(30),
       passwordHash VARCHAR(200),
       firstName VARCHAR(30),
@@ -26,7 +26,13 @@ const createUserTable = async () => {
       email VARCHAR(30),
       notify BINARY,
       PRIMARY KEY (phoneNumber)
-    );`);
+    );`
+  );
+  await c.query(`ALTER TABLE user MODIFY COLUMN firstName VARCHAR(255)
+    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`)
+  await c.query(`ALTER TABLE user MODIFY COLUMN lastName VARCHAR(255)
+  CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;`)
+  return "user table ok"
 };
 
 const addUser = async ({
