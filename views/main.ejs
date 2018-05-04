@@ -13,35 +13,38 @@
 
     <%- include header.ejs %>
 
-        <div class="ui main text container center">
+        <div class="ui main center aligned container">
             <h1 class="ui header">کتابچه</h1>
-            <p>کتابچه فروشگاه قانونی کتاب است که امکان خرید و مطالعه آن‌ها را بر روی گوشی و تبلت‌های هوشمند فراهم می‌کند. همه
+            <p style="padding-left: 20em; padding-right: 20em;">کتابچه فروشگاه قانونی کتاب است که امکان خرید و مطالعه آن‌ها را بر روی گوشی و تبلت‌های هوشمند فراهم می‌کند. همه
                 کتاب‌ها نیز با هماهنگی و انتخاب ناشران و ‌صاحبان اثر‌ عرضه می‌شوند.</p>
-        </div>
 
-        <div class="ui special cards main container five column grid">
-            <% for(var i=0; i< books.length; i++) { %>
-                <div class="card">
-                    <div class="blurring dimmable image">
-                        <div class="ui inverted dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui primary button">اطلاعات بیشتر</div>
+            <div class="ui divider" style="margin: 5em;"></div>
+
+            <h3 class="ui header" style="text-align: right;">تازه ها</h1>
+
+            <div class="ui special cards four column grid">
+                <% for(var i=0; i< books.length; i++) { %>
+                    <div class="card">
+                        <div class="blurring dimmable image">
+                            <div class="ui inverted dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui primary button">اطلاعات بیشتر</div>
+                                    </div>
                                 </div>
                             </div>
+                            <img src="<%= books[i].cover %>">
                         </div>
-                        <img src="<%= books[i].cover %>">
-                    </div>
-                    <div class="content">
-                        <a class="header center"><%= books[i].name %></a>
-                        <div class="meta center">
-                            <span class="author"><%= books[i].author %></span>
+                        <div class="content">
+                            <a class="header center"><%= books[i].name %></a>
+                            <div class="meta center">
+                                <span class="author"><%= books[i].author %></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <% } %>
+                <% } %>
+            </div>
         </div>
-
 
         <%- include footer.ejs %>
 

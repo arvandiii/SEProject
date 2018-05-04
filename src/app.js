@@ -16,6 +16,41 @@ app.get("/", function(req, res) {
         name: "مردی به نام اوه",
         cover: "a_man_called_ove.png",
         author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
+      },
+      {
+        name: "مردی به نام اوه",
+        cover: "a_man_called_ove.png",
+        author: "فردریک بکمن"
       }
     ]
   });
