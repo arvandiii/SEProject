@@ -23,12 +23,13 @@ app.use(async (req, res, next) => {
   try {
     const { phoneNumber } = jwt.verify(token, SECRET);
     const [user] = await getUser({ phoneNumber });
-    const { firstName, lastName, email } = user;
+    const { firstName, lastName, email, role } = user;
     req.user = {
       phoneNumber,
       firstName,
       lastName,
-      email
+      email,
+      role
     };
   } catch (error) {
     req.user = null;
@@ -133,7 +134,7 @@ app.post("/signUp", async function(req, res) {
         user: null
       });
     }
-    console.log(error)
+    console.log(error);
   }
   return res.render("signIn.ejs", {
     message: {
@@ -143,6 +144,16 @@ app.post("/signUp", async function(req, res) {
     },
     user: null
   });
+});
+
+app.get("/admin", async function(req, res) {
+  const { user } = req;
+  if (user.role === "admin") {
+    return res.render("adminPanel.ejs", {
+      user
+    });
+  }
+  return res.
 });
 
 app.get("/cookie", async function(req, res) {

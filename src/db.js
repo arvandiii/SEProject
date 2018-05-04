@@ -25,6 +25,7 @@ const createUserTable = async () => {
       lastName VARCHAR(30),
       email VARCHAR(30),
       notify BINARY,
+      role VARCHAR(30),
       PRIMARY KEY (phoneNumber)
     );`
   );
